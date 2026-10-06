@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prediction Report</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f5f7f5;
+color:#333;
+}
+
+.navbar{
+background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+padding:15px 0;
+}
+
+.navbar-brand{
+font-size:28px;
+font-weight:700;
+color:#2E7D32!important;
+}
+
+.hero{
+background:linear-gradient(135deg,#2E7D32,#43A047);
+padding:60px 0;
+color:white;
+text-align:center;
+}
+
+.hero h1{
+font-size:48px;
+font-weight:700;
+}
+
+.hero p{
+font-size:18px;
+margin-top:10px;
+opacity:.95;
+}
+
+.main-card{
+
+margin-top:-40px;
+
+background:white;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+padding:35px;
+
+}
+
+.section-title{
+
+font-size:28px;
+
+font-weight:700;
+
+color:#2E7D32;
+
+margin-bottom:25px;
+
+}
+
+.info-card{
+
+background:#F7FAF8;
+
+border-left:5px solid #2E7D32;
+
+border-radius:12px;
+
+padding:18px;
+
+margin-bottom:20px;
+
+transition:.3s;
+
+}
+
+.info-card:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.info-card h5{
+
+color:#2E7D32;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+}
+
+.result-box{
+
+background:#F2FFF3;
+
+border:2px solid #C8E6C9;
+
+border-radius:18px;
+
+padding:35px;
+
+text-align:center;
+
+height:100%;
+
+}
+
+.result-box h2{
+
+font-size:34px;
+
+font-weight:700;
+
+color:#222;
+
+}
+
+.result-value{
+
+font-size:70px;
+
+font-weight:bold;
+
+color:#2E7D32;
+
+margin:15px 0;
+
+}
+
+.unit{
+
+font-size:22px;
+
+color:#666;
+
+margin-bottom:20px;
+
+}
+
+.recommendation{
+
+background:#FAFAFA;
+
+padding:20px;
+
+border-radius:12px;
+
+margin-top:25px;
+
+text-align:left;
+
+}
+
+.recommendation h5{
+
+color:#2E7D32;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.btn-home{
+
+background:#2E7D32;
+
+color:white;
+
+padding:12px 30px;
+
+border-radius:10px;
+
+text-decoration:none;
+
+font-weight:600;
+
+display:inline-block;
+
+margin-top:25px;
+
+transition:.3s;
+
+}
+
+.btn-home:hover{
+
+background:#1B5E20;
+
+color:white;
+
+}
+
+.status-section{
+
+margin-top:40px;
+
+}
+
+.status-card{
+
+background:white;
+
+border-radius:15px;
+
+padding:25px;
+
+text-align:center;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+height:100%;
+
+}
+
+.status-card i{
+
+font-size:35px;
+
+color:#2E7D32;
+
+margin-bottom:15px;
+
+}
+
+.status-card h5{
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+footer{
+
+margin-top:60px;
+
+background:#1F3D2B;
+
+color:white;
+
+padding:45px 0;
+
+}
+
+footer h4{
+
+font-weight:700;
+
+margin-bottom:15px;
+
+}
+
+footer p{
+
+opacity:.9;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+<a class="navbar-brand" href="/">
+🌾 Crop Yield Prediction
+</a>
+
+<a href="/" class="btn btn-outline-success">
+New Prediction
+</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+<i class="fa-solid fa-circle-check"></i>
+
+Prediction Report
+
+</h1>
+
+<p>
+
+Your agricultural yield report has been generated successfully.
+
+</p>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="main-card">
+
+<div class="row">
+
+<div class="col-lg-5">
+
+<h3 class="section-title">
+
+Prediction Summary
+
+</h3>
+
+<div class="info-card">
+
+<h5>
+
+<i class="fa-solid fa-earth-asia"></i>
+
+Country
+
+</h5>
+
+<p>{{country}}</p>
+
+</div>
+
+<div class="info-card">
+
+<h5>
+
+<i class="fa-solid fa-seedling"></i>
+
+Crop
+
+</h5>
+
+<p>{{crop}}</p>
+
+</div>
+
+<div class="info-card">
+
+<h5>
+
+<i class="fa-solid fa-calendar"></i>
+
+Year
+
+</h5>
+
+<p>{{year}}</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-7">
+
+<div class="result-box">
+
+<h2>
+
+Estimated Crop Yield
+
+</h2>
+
+<div class="result-value">
+
+{{prediction}}
+
+</div>
+
+<div class="unit">
+
+hg / ha
+
+</div>
+<div class="recommendation">
+
+<h5>
+
+<i class="fa-solid fa-lightbulb"></i>
+
+Recommendation
+
+</h5>
+
+<p>
+
+The estimated crop yield suggests favorable agricultural productivity
+for the selected inputs. Maintaining proper irrigation, balanced
+fertilizer application, and regular crop monitoring can help achieve
+consistent production and improve overall farming efficiency.
+
+</p>
+
+</div>
+
+<a href="/" class="btn-home">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+New Prediction
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="status-section">
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="status-card">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<h5>Prediction Status</h5>
+
+<p>
+
+Successfully Generated
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="status-card">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<h5>Report</h5>
+
+<p>
+
+Agricultural Yield Summary
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="status-card">
+
+<i class="fa-solid fa-leaf"></i>
+
+<h5>Purpose</h5>
+
+<p>
+
+Crop Planning & Decision Support
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row mt-5">
+
+<div class="col-lg-12">
+
+<div class="card border-0 shadow-sm rounded-4">
+
+<div class="card-body p-4">
+
+<h4 class="text-success mb-3">
+
+<i class="fa-solid fa-circle-info"></i>
+
+About This Report
+
+</h4>
+
+<p>
+
+This report provides an estimated crop yield based on the information
+submitted. It serves as a reference to help users understand expected
+agricultural productivity under the selected conditions.
+
+</p>
+
+<p class="mb-0">
+
+For improved outcomes, consider monitoring weather conditions,
+maintaining soil health, and following appropriate crop management
+practices throughout the growing season.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<h4>
+
+🌾 Crop Yield Prediction
+
+</h4>
+
+<p>
+
+Supporting smarter agricultural planning through crop yield estimation.
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+Quick Links
+
+</h5>
+
+<p>
+
+Home<br>
+
+Prediction Report<br>
+
+New Prediction
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+Technologies
+
+</h5>
+
+<p>
+
+Python<br>
+
+Flask<br>
+
+Bootstrap<br>
+
+Scikit-learn
+
+</p>
+
+</div>
+
+</div>
+
+<hr class="border-light">
+
+<div class="text-center">
+
+<p class="mb-0">
+
+© 2026 Crop Yield Prediction System. All Rights Reserved.
+
+</p>
+
+</div>
+
+</div>
+
+</footer>
+
+</body>
+
+</html>

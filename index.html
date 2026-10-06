@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crop Yield Prediction</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+body{margin:0;font-family:Segoe UI,sans-serif;background:#f5f7f8;color:#222}
+nav{padding:18px 60px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);font-weight:700;color:#2e7d32;font-size:28px}
+.wrap{display:flex;min-height:calc(100vh - 70px)}
+.left{flex:1;background:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1400&q=80') center/cover;position:relative}
+.left:before{content:'';position:absolute;inset:0;background:rgba(26,77,46,.55)}
+.content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:60px;color:#fff}
+.content h1{font-size:52px;margin:0 0 15px}
+.content p{font-size:18px;max-width:520px;line-height:1.7}
+.features div{margin:18px 0;font-size:18px}
+.features i{margin-right:10px;color:#c8f7c5}
+.right{flex:1;display:flex;align-items:center;justify-content:center;padding:40px;background:#eef4ef}
+.card{background:#fff;width:100%;max-width:520px;border-radius:18px;padding:35px;box-shadow:0 12px 30px rgba(0,0,0,.12)}
+.form-control,
+.form-select{height:48px;border:1px solid #d6d6d6;border-radius:12px;margin-bottom:20px;padding:0 18px;font-size:18px;background:#ffffff;color:#555;box-shadow:none;transition:0.3s;}
+
+.form-control:focus,
+.form-select:focus{
+
+border-color:#2E7D32;
+
+box-shadow:0 0 0 3px rgba(46,125,50,.15);
+
+outline:none;
+
+}
+
+.form-select{
+
+appearance:none;
+-webkit-appearance:none;
+-moz-appearance:none;
+
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6' stroke='%23666' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+
+background-repeat:no-repeat;
+
+background-position:right 18px center;
+
+background-size:18px;
+
+padding-right:50px;
+
+}
+h2{text-align:center;color:#2e7d32}
+input,select{width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;margin:10px 0;font-size:15px}
+button{width:100%;padding:15px;border:none;border-radius:10px;background:#2e7d32;color:#fff;font-size:18px;font-weight:700}
+button:hover{background:#1f5d24}
+small{display:block;text-align:center;color:#777;margin-top:18px}
+@media(max-width:900px){.wrap{flex-direction:column}.left{min-height:340px}}
+</style></head>
+<body>
+<nav>🌾 Crop Yield Prediction</nav>
+<div class="wrap">
+<div class="left"><div class="content">
+<h1>AI Powered Crop Yield Prediction</h1>
+<p>Predict crop productivity using agricultural and environmental data to support better farming decisions.</p>
+<div class="features">
+<div><i class="fa-solid fa-seedling"></i>Machine Learning Prediction</div>
+<div><i class="fa-solid fa-cloud-rain"></i>Weather Analysis</div>
+<div><i class="fa-solid fa-temperature-half"></i>Climate Intelligence</div>
+<div><i class="fa-solid fa-chart-line"></i>Decision Support</div>
+</div>
+</div></div>
+<div class="right"><div class="card">
+<h2>Prediction Form</h2>
+<form action="/" method="POST">
+<select class="form-select" name="area" required>
+<option value=""selected disabled>Select Country</option>
+{% for country in countries %}
+<option value="{{country}}">{{country}}</option>
+{% endfor %}
+</select>
+<select class="form-select" name="item" required>
+<option value="" selected disabled>Select Crop</option>
+{% for crop in crops %}
+<option value="{{crop}}">
+{{crop}}
+</option>
+{% endfor %}
+</select>
+<input type="number" name="year" placeholder="Year" required>
+<input type="number" step="0.01" name="rainfall" placeholder="Average Rainfall (mm)" required>
+<input type="number" step="0.01" name="pesticides" placeholder="Pesticides (Tonnes)" required>
+<input type="number" step="0.01" name="avg_temp" placeholder="Average Temperature (°C)" required>
+<button type="submit"><i class="fa-solid fa-leaf"></i> Predict Crop Yield</button>
+</form>
+<small>Powered by Random Forest Machine Learning</small>
+</div></div>
+</div>
+
+<!-- Why Choose Our Platform -->
+<section style="padding:60px 8%; background:#fff;">
+
+    <div style="text-align:center; margin-bottom:40px;">
+
+        <h2 style="font-size:34px;
+                   font-weight:700;
+                   color:#2E7D32;">
+
+            Why Choose Our Platform?
+
+        </h2>
+
+        <p style="font-size:16px;
+                  color:#666;
+                  max-width:650px;
+                  margin:10px auto 0;">
+
+            Reliable agricultural insights for better crop planning and productivity.
+
+        </p>
+
+    </div>
+
+    <div style="display:flex;
+                justify-content:center;
+                flex-wrap:wrap;
+                gap:20px;">
+
+        <!-- Card 1 -->
+        <div style="background:#F8FBF8;
+                    width:260px;
+                    padding:20px;
+                    border-radius:15px;
+                    text-align:center;
+                    box-shadow:0 5px 12px rgba(0,0,0,.08);">
+
+            <div style="font-size:40px;">🌦</div>
+
+            <h5 style="margin:15px 0 10px;
+                       color:#2E7D32;
+                       font-weight:600;">
+
+                Climate Insights
+
+            </h5>
+
+            <p style="font-size:14px;
+                      color:#666;
+                      line-height:1.6;">
+
+                Uses rainfall and temperature information to estimate crop productivity.
+
+            </p>
+
+        </div>
+
+        <!-- Card 2 -->
+        <div style="background:#F8FBF8;
+                    width:260px;
+                    padding:20px;
+                    border-radius:15px;
+                    text-align:center;
+                    box-shadow:0 5px 12px rgba(0,0,0,.08);">
+
+            <div style="font-size:40px;">🌾</div>
+
+            <h5 style="margin:15px 0 10px;
+                       color:#2E7D32;
+                       font-weight:600;">
+
+                Crop Database
+
+            </h5>
+
+            <p style="font-size:14px;
+                      color:#666;
+                      line-height:1.6;">
+
+                Supports multiple crops across different countries.
+
+            </p>
+
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background:#F8FBF8;
+                    width:260px;
+                    padding:20px;
+                    border-radius:15px;
+                    text-align:center;
+                    box-shadow:0 5px 12px rgba(0,0,0,.08);">
+
+            <div style="font-size:40px;">📊</div>
+
+            <h5 style="margin:15px 0 10px;
+                       color:#2E7D32;
+                       font-weight:600;">
+
+                Data Analysis
+
+            </h5>
+
+            <p style="font-size:14px;
+                      color:#666;
+                      line-height:1.6;">
+
+                Generates crop yield estimates from agricultural data.
+
+            </p>
+
+        </div>
+
+        <!-- Card 4 -->
+        <div style="background:#F8FBF8;
+                    width:260px;
+                    padding:20px;
+                    border-radius:15px;
+                    text-align:center;
+                    box-shadow:0 5px 12px rgba(0,0,0,.08);">
+
+            <div style="font-size:40px;">📈</div>
+
+            <h5 style="margin:15px 0 10px;
+                       color:#2E7D32;
+                       font-weight:600;">
+
+                Better Planning
+
+            </h5>
+
+            <p style="font-size:14px;
+                      color:#666;
+                      line-height:1.6;">
+
+                Helps improve agricultural planning and productivity.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Workflow Section -->
+<section style="padding:80px 8%; background:#f8fbf8;">
+
+    <div style="text-align:center; margin-bottom:50px;">
+
+        <h2 style="font-size:40px; font-weight:700; color:#2E7D32;">
+            How It Works
+        </h2>
+
+        <p style="font-size:18px; color:#666;">
+            Follow these simple steps to generate your crop yield prediction report.
+        </p>
+
+    </div>
+
+    <div style="display:flex;
+                justify-content:center;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:20px;">
+
+        <!-- Step 1 -->
+        <div style="background:#fff;
+                    width:220px;
+                    padding:30px;
+                    border-radius:18px;
+                    text-align:center;
+                    box-shadow:0 8px 20px rgba(0,0,0,.08);">
+
+            <div style="width:60px;
+                        height:60px;
+                        margin:auto;
+                        background:#E8F5E9;
+                        border-radius:50%;
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        font-size:28px;">
+                📝
+            </div>
+
+            <h4 style="margin-top:20px; color:#2E7D32;">
+                Step 1
+            </h4>
+
+            <h5>Enter Details</h5>
+
+            <p style="color:#666;">
+                Provide country, crop, year, rainfall, pesticides, and temperature.
+            </p>
+
+        </div>
+
+        <div style="font-size:35px; color:#2E7D32;">➜</div>
+
+        <!-- Step 2 -->
+        <div style="background:#fff;
+                    width:220px;
+                    padding:30px;
+                    border-radius:18px;
+                    text-align:center;
+                    box-shadow:0 8px 20px rgba(0,0,0,.08);">
+
+            <div style="width:60px;
+                        height:60px;
+                        margin:auto;
+                        background:#E8F5E9;
+                        border-radius:50%;
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        font-size:28px;">
+                ✔️
+            </div>
+
+            <h4 style="margin-top:20px; color:#2E7D32;">
+                Step 2
+            </h4>
+
+            <h5>Validate Data</h5>
+
+            <p style="color:#666;">
+                The system checks the entered information before generating the report.
+            </p>
+
+        </div>
+
+        <div style="font-size:35px; color:#2E7D32;">➜</div>
+
+        <!-- Step 3 -->
+        <div style="background:#fff;
+                    width:220px;
+                    padding:30px;
+                    border-radius:18px;
+                    text-align:center;
+                    box-shadow:0 8px 20px rgba(0,0,0,.08);">
+
+            <div style="width:60px;
+                        height:60px;
+                        margin:auto;
+                        background:#E8F5E9;
+                        border-radius:50%;
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        font-size:28px;">
+                📊
+            </div>
+
+            <h4 style="margin-top:20px; color:#2E7D32;">
+                Step 3
+            </h4>
+
+            <h5>Generate Report</h5>
+
+            <p style="color:#666;">
+                Estimate the expected crop yield based on the provided information.
+            </p>
+
+        </div>
+
+        <div style="font-size:35px; color:#2E7D32;">➜</div>
+
+        <!-- Step 4 -->
+        <div style="background:#fff;
+                    width:220px;
+                    padding:30px;
+                    border-radius:18px;
+                    text-align:center;
+                    box-shadow:0 8px 20px rgba(0,0,0,.08);">
+
+            <div style="width:60px;
+                        height:60px;
+                        margin:auto;
+                        background:#E8F5E9;
+                        border-radius:50%;
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        font-size:28px;">
+                🌾
+            </div>
+
+            <h4 style="margin-top:20px; color:#2E7D32;">
+                Step 4
+            </h4>
+
+            <h5>View Results</h5>
+
+            <p style="color:#666;">
+                Review the predicted crop yield and use the report for planning.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<footer style="background:#1f3d2b;color:#fff;padding:40px 8%">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px">
+<div>
+<h3>🌾 Crop Yield Prediction</h3>
+<p>AI-powered crop yield prediction using Machine Learning.</p>
+</div>
+<div>
+<h5>Quick Links</h5>
+<p>Home<br>Prediction<br>About</p>
+</div>
+<div>
+<h5>Technologies</h5>
+<p>Python<br>Flask<br>Random Forest<br>Bootstrap</p>
+</div>
+</div>
+<hr style="border-color:#4f6f5c">
+<p style="text-align:center;margin:0">© 2026 Crop Yield Prediction System | Developed for Academic Project</p>
+</footer>
+
+</body></html>
